@@ -9,23 +9,30 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            @apply bg-gray-900 text-gray-200;
+            @apply bg-slate-50 text-slate-800;
+        }
+        .project-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Header -->
-    <header class="bg-gray-800 text-white p-6 md:p-8 shadow-lg">
+    <header class="bg-white text-slate-900 p-6 md:p-8 shadow-lg">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-3xl font-bold tracking-tight text-white">
+            <h1 class="text-3xl font-bold tracking-tight text-slate-900">
                 HUA-YEN PAN
             </h1>
             <nav class="mt-4 md:mt-0">
                 <ul class="flex space-x-6">
-                    <li><a href="#about" class="hover:text-cyan-400 transition-colors duration-300">About Me</a></li>
-                    <li><a href="#projects" class="hover:text-cyan-400 transition-colors duration-300">Projects</a></li>
-                    <li><a href="#contact" class="hover:text-cyan-400 transition-colors duration-300">Contact</a></li>
+                    <li><a href="#about" class="hover:text-orange-600 transition-colors duration-300">About Me</a></li>
+                    <li><a href="#projects" class="hover:text-orange-600 transition-colors duration-300">Projects</a></li>
+                    <li><a href="#contact" class="hover:text-orange-600 transition-colors duration-300">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -34,9 +41,9 @@
     <main class="container mx-auto py-12 px-6">
         
         <!-- About Section -->
-        <section id="about" class="mb-20 p-8 bg-gray-800 rounded-xl shadow-lg">
-            <h2 class="text-4xl font-bold text-center mb-6 text-cyan-400">About Me</h2>
-            <div class="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed space-y-4">
+        <section id="about" class="mb-20 p-8 bg-white rounded-xl shadow-lg">
+            <h2 class="text-4xl font-bold text-center mb-6 text-orange-600">About Me</h2>
+            <div class="max-w-3xl mx-auto text-lg text-slate-700 leading-relaxed space-y-4">
                 <p>
                     An experienced Sound Designer and Acoustic Engineer with over 5 years of experience in interactive and immersive audio design. I specialize in creating sound systems for hardware, AR/VR, and non-traditional environments. I am skilled in applying Human-Centered Design and systems-thinking to product development, and I leverage tools like Wwise to build compelling and technically robust audio experiences. My background includes rich experience collaborating in multinational corporations and with diverse teams, possessing a full-stack skill set from hardware development to software implementation.
                 </p>
@@ -45,118 +52,141 @@
 
         <!-- Projects Section -->
         <section id="projects" class="mb-20">
-            <h2 class="text-4xl font-bold text-center mb-10 text-cyan-400">Projects Portfolio</h2>
+            <h2 class="text-4xl font-bold text-center mb-10 text-orange-600">Projects Portfolio</h2>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <!-- Project Item: Merry Electronic Health Game -->
-                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-white">Merry Electronic Health Game</h3>
-                        <p class="text-sm text-gray-400 mb-4">Acoustic Engineer | Feb 2025 - Present</p>
-                        <p class="text-gray-300 mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-slate-900">Merry Electronic Health Game</h3>
+                        <p class="text-sm text-slate-500 mb-4">Acoustic Engineer | Feb 2025 - Present</p>
+                        <p class="text-slate-700 mb-4">
                             Led the development of a patent-pending visual recognition-based rhythm game for sarcopenia, integrating music and sound design into a hardware product.
                         </p>
                         <div class="mt-4">
-                            <a href="https://youtu.be/5zp98BRb74k" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
+                            <a href="https://youtu.be/5zp98BRb74k" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Item: French National Railway -->
-                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-white">French National Railway (SNCF)</h3>
-                        <p class="text-sm text-gray-400 mb-4">Intern Sound Designer | 2020</p>
-                        <p class="text-gray-300 mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-slate-900">French National Railway (SNCF)</h3>
+                        <p class="text-sm text-slate-500 mb-4">Intern Sound Designer | 2020</p>
+                        <p class="text-slate-700 mb-4">
                             Spearheaded the design of a psychoacoustics-based alarm sound system, with the related research paper selected for the 2022 World Congress on Railway Research.
                         </p>
                         <div class="mt-4">
-                            <a href="https://www.researchgate.net/publication/361482536_Going_home_safely_designing_and_testing_effective_alarms_to_make_passengers_exit_trains" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
+                            <a href="https://www.researchgate.net/publication/361482536_Going_home_safely_designing_and_testing_effective_alarms_to_make_passengers_exit_trains" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project Item: Taiwan Sound Lab -->
-                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-white">Taiwan Sound Lab, C-LAB</h3>
-                        <p class="text-sm text-gray-400 mb-4">Sound Designer | 2023</p>
-                        <p class="text-gray-300 mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-slate-900">Taiwan Sound Lab, C-LAB</h3>
+                        <p class="text-sm text-slate-500 mb-4">Sound Designer | 2023</p>
+                        <p class="text-slate-700 mb-4">
                             Contributed to the "Feel Together" project, collaborating to develop a wearable device that translates sound into tactile vibrations.
                         </p>
                         <div class="mt-4">
-                            <a href="https://www.notion.so/2907b0b461a64b859a13287de977d1c8?source=copy_link#1e34f4d665ce803187caec0e3a52f81c" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
+                            <a href="https://www.notion.so/2907b0b461a64b859a13287de977d1c8?source=copy_link#1e34f4d665ce803187caec0e3a52f81c" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Item: VR Film Somewhere Unknown in Indochina -->
-                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-white">VR Film *Somewhere Unknown in Indochina*</h3>
-                        <p class="text-sm text-gray-400 mb-4">Sound Designer | 2023</p>
-                        <p class="text-gray-300 mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-slate-900">VR Film *Somewhere Unknown in Indochina*</h3>
+                        <p class="text-sm text-slate-500 mb-4">Sound Designer | 2023</p>
+                        <p class="text-slate-700 mb-4">
                             Responsible for the Binaural Spatial Audio sound design for the "Umbrella Flying" scene.
                         </p>
                         <div class="mt-4">
-                            <a href="https://youtu.be/NizX7zrh07s" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
+                            <a href="https://youtu.be/NizX7zrh07s" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Item: VR Game Tag War -->
-                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-white">VR Game *Tag War*</h3>
-                        <p class="text-sm text-gray-400 mb-4">Sound Designer | 2019</p>
-                        <p class="text-gray-300 mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-slate-900">VR Game *Tag War*</h3>
+                        <p class="text-sm text-slate-500 mb-4">Sound Designer | 2019</p>
+                        <p class="text-slate-700 mb-4">
                             Served as a Sound and Music Designer. The game was nominated for "Best VR Game" at the 2019 INDIE GAME AWARD.
                         </p>
                         <div class="mt-4">
-                            <a href="https://store.steampowered.com/app/1125600/TAG_WAR/" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
+                            <a href="https://store.steampowered.com/app/1125600/TAG_WAR/" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project Item: VR Film Monologue of Barbie -->
-                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-white">VR Film *Monologue of Barbie*</h3>
-                        <p class="text-sm text-gray-400 mb-4">Sound Designer</p>
-                        <p class="text-gray-300 mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-slate-900">VR Film *Monologue of Barbie*</h3>
+                        <p class="text-sm text-slate-500 mb-4">Sound Designer</p>
+                        <p class="text-slate-700 mb-4">
                             Served as a sound designer for the VR film.
                         </p>
                         <div class="mt-4">
-                            <a href="https://culturetech.taicca.tw/en/content/145/Monologue%20of%20Barbie" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
+                            <a href="https://culturetech.taicca.tw/en/content/145/Monologue%20of%20Barbie" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project Item: Fulldome Film Dialogue in Silence -->
-                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-white">Fulldome Film *Dialogue in Silence*</h3>
-                        <p class="text-sm text-gray-400 mb-4">Multichannel Audio Creator</p>
-                        <p class="text-gray-300 mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-slate-900">Fulldome Film *Dialogue in Silence*</h3>
+                        <p class="text-sm text-slate-500 mb-4">Multichannel Audio Creator</p>
+                        <p class="text-slate-700 mb-4">
                             Served as a multichannel audio creator. The film was nominated for the 2024 FullDome Festival Jena.
                         </p>
                         <div class="mt-4">
-                            <a href="https://fulldome-festival.de/files/documents/program/240514-FDF2024_Programm-final.pdf" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
+                            <a href="https://fulldome-festival.de/files/documents/program/240514-FDF2024_Programm-final.pdf" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Project Item: Spatial Audio Recording & Mixing -->
-                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold mb-2 text-white">Spatial Audio Recording & Mixing</h3>
-                        <p class="text-sm text-gray-400 mb-4">Acoustic Engineer</p>
-                        <p class="text-gray-300 mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-slate-900">Spatial Audio Recording & Mixing</h3>
+                        <p class="text-sm text-slate-500 mb-4">Acoustic Engineer</p>
+                        <p class="text-slate-700 mb-4">
                             Used Insta360 X5 and Zoom H3VR to record an improvised performance by percussionist Yuan Xiao-Tong on a sound installation, and performed spatial audio mixing.
                         </p>
                         <div class="mt-4">
-                            <a href="https://youtu.be/7lpxW_OdG-A?si=yt3fNmQmctN2oBSV" class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
+                            <a href="https://youtu.be/7lpxW_OdG-A?si=yt3fNmQmctN2oBSV" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Item: National Formosa University -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-slate-900">National Formosa University</h3>
+                        <p class="text-sm text-slate-500 mb-4">Sound Designer</p>
+                        <p class="text-slate-700 mb-4">
+                            Guided students in environmental sound recording and sound logo creation, and collaborated with artist Hong-hui Hsu on a sound and plant installation.
+                        </p>
+                        <div class="mt-4 flex flex-col md:flex-row md:space-x-4">
+                            <div class="flex flex-col space-y-4 md:w-1/2">
+                                <img src="uploaded:IMG_2949.JPG.jpg-73e0d610-e94a-4754-86ed-ec6087a97f6a" alt="A vertical image showing a plant installation" class="w-full h-auto rounded-lg">
+                                <img src="uploaded:IMG_2952.JPG.jpg-a25d303e-3eb3-4471-9a6a-3bb947c87a77" alt="A vertical image showing a plant installation in a wooden frame" class="w-full h-auto rounded-lg">
+                            </div>
+                            <div class="mt-4 md:mt-0 md:w-1/2">
+                                <img src="uploaded:IMG_2977.JPG.jpg-49592f23-0e81-4a16-a207-7a30c9666dd6" alt="A horizontal image showing two people looking at the installation" class="w-full h-auto rounded-lg">
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <a href="https://youtu.be/7lpxW_OdG-A?si=yt3fNmQmctN2oBSV" class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300" target="_blank">Learn more (link)</a>
                         </div>
                     </div>
                 </div>
@@ -164,17 +194,17 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="text-center p-8 bg-gray-800 rounded-xl shadow-lg">
-            <h2 class="text-4xl font-bold mb-6 text-cyan-400">Contact</h2>
-            <p class="text-lg text-gray-300 mb-4">If you are interested in my work, please feel free to contact me through the following methods.</p>
+        <section id="contact" class="text-center p-8 bg-white rounded-xl shadow-lg">
+            <h2 class="text-4xl font-bold mb-6 text-orange-600">Contact</h2>
+            <p class="text-lg text-slate-700 mb-4">If you are interested in my work, please feel free to contact me through the following methods.</p>
             <div class="flex flex-col items-center space-y-4">
-                <a href="mailto:panstudiollrl@gmail.com" class="text-white text-xl hover:text-cyan-400 transition-colors duration-300 flex items-center">
+                <a href="mailto:panstudiollrl@gmail.com" class="text-slate-800 text-xl hover:text-orange-600 transition-colors duration-300 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2v10z" />
                     </svg>
                     panstudiollrl@gmail.com
                 </a>
-                <a href="#" class="text-white text-xl hover:text-cyan-400 transition-colors duration-300 flex items-center">
+                <a href="#" class="text-slate-800 text-xl hover:text-orange-600 transition-colors duration-300 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                     </svg>
@@ -186,7 +216,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-400 text-center p-4">
+    <footer class="bg-white text-slate-500 text-center p-4">
         <p>&copy; 2025 HUA-YEN PAN. All rights reserved.</p>
     </footer>
 

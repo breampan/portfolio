@@ -60,7 +60,7 @@
         <section id="projects" class="mb-20">
             <h2 class="text-4xl font-bold text-center mb-10 text-cyan-400">Projects Portfolio</h2>
             
-            <!-- NEW: Featured Project 《ping-pong-ping-pong》 -->
+            <!-- Featured Project 《ping-pong-ping-pong》 -->
             <div class="mb-12">
                 <div class="gradient-border p-1">
                     <div class="bg-gray-800 rounded-xl overflow-hidden p-6 md:p-10">
@@ -91,9 +91,8 @@
 
                             <!-- Right Media (Video/Photos) -->
                             <div class="lg:w-1/2 space-y-6">
-                                <!-- YouTube Embed -->
+                                <!-- YouTube Embed (Fixed link to embed format) -->
                                 <div class="aspect-video w-full rounded-lg overflow-hidden shadow-2xl bg-black">
-                                    <!-- Replace YOUR_YOUTUBE_ID with your actual video ID -->
                                     <iframe 
                                         class="w-full h-full"
                                         src="https://www.youtube.com/embed/_BmDJpe8Hak" 
@@ -106,16 +105,15 @@
                                 
                                 <!-- Photo with Credit -->
                                 <div class="relative group">
-                                    <div class="w-full h-64 bg-gray-700 rounded-lg overflow-hidden">
-                                        <!-- Replace with actual photo URL -->
-                                        <div class="w-full h-full flex items-center justify-center text-gray-500 italic">
-                                            [作品攝影照片上傳預留空間]
-                                        </div>
-                                        <!-- <img src="/images/TVM07776_2nd_P3_4k.jpg" alt="ping-pong-ping-pong" class="w-full h-full object-cover"> -->
+                                    <div class="w-full h-64 bg-gray-700 rounded-lg overflow-hidden border border-gray-600">
+                                        <!-- 已移除預留空間文字，改為直接顯示影像 -->
+                                        <img src="images/TVM07776_2nd_P3_4k.jpg" 
+                                             alt="ping-pong-ping-pong installation" 
+                                             class="w-full h-full object-cover"
+                                             onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Image+Not+Found';">
                                     </div>
                                     <div class="mt-2 text-right">
-                                        <span class="text-xs text-gray-500 italic">Photo by: <span class="text-gray-400">攝影團隊：ToV成為影像
- (Photographer Name)</span></span>
+                                        <span class="text-xs text-gray-500 italic">Photo by: <span class="text-gray-400">攝影團隊：ToV成為影像</span></span>
                                     </div>
                                 </div>
                             </div>

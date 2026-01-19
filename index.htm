@@ -1,220 +1,242 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUA-YEN PAN - Sound Designer & Audio Engineer</title>
+    <title>HUA-YEN PAN - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals (Beige, Terracotta, Dark Slate) -->
-    <!-- Application Structure Plan: The SPA will use a thematic structure instead of chronological to better highlight the candidate's key strengths for product and immersive audio roles. The main sections will be a hero intro, "Interactive Audio for Products & Hardware", "Immersive & Spatial Audio", and "Musician & Educator", followed by skills and contact. This structure allows recruiters to quickly find the most relevant information (hardware experience for Meta, etc.). Navigation will be supported by a sticky header with smooth-scrolling links. -->
-    <!-- Visualization & Content Choices: Experience -> Goal: Present professional experience thematically, not chronologically. Presentation: Use a responsive grid of project cards. Each card contains a title, brief description, and a link. Interaction: Hover effects on cards, smooth-scroll navigation. Justification: This structure is more scannable and impactful for recruiters than a linear text document. It foregrounds the most relevant skills (Hardware, VR) instead of burying them. Library/Method: Vanilla JS for interactions, Tailwind CSS for layout. No charts needed. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
-        h1, h2, h3 {
-            font-family: 'Lora', serif;
+        .gradient-border {
+            position: relative;
+            background: #1f2937;
+            border-radius: 0.75rem;
         }
-        .section-fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .section-fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #0891b2, #06b6d4, #1f2937);
+            border-radius: 0.85rem;
+            z-index: -1;
         }
     </style>
 </head>
-<body class="bg-[#FDFBF7] text-slate-800 antialiased">
+<body class="bg-gray-900 text-gray-200 antialiased">
 
-    <!-- Sticky Header -->
-    <header id="header" class="bg-[#FDFBF7]/80 backdrop-blur-md sticky top-0 z-50 transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-lg font-semibold tracking-wider">
-                <a href="#">HUA-YEN PAN</a>
-            </div>
-            <nav class="hidden md:flex space-x-8 text-sm">
-                <a href="#hardware" class="hover:text-[#E57A44] transition-colors">Products & Hardware</a>
-                <a href="#immersive" class="hover:text-[#E57A44] transition-colors">Immersive & Spatial Audio</a>
-                <a href="#musician" class="hover:text-[#E57A44] transition-colors">Musician</a>
-                <a href="#skills" class="hover:text-[#E57A44] transition-colors">Skills</a>
-                <a href="#contact" class="hover:text-[#E57A44] transition-colors">Contact</a>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800 text-white p-6 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight text-white">
+                HUA-YEN PAN
+            </h1>
+            <nav class="mt-4 md:mt-0">
+                <ul class="flex space-x-6 text-sm md:text-base">
+                    <li><a href="#about" class="hover:text-cyan-400 transition-colors duration-300">About Me</a></li>
+                    <li><a href="#projects" class="hover:text-cyan-400 transition-colors duration-300">Projects</a></li>
+                    <li><a href="#contact" class="hover:text-cyan-400 transition-colors duration-300">Contact</a></li>
+                </ul>
             </nav>
-            <div class="md:hidden">
-                <!-- Mobile Menu Button can be added here if needed -->
-            </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-6">
-
-        <!-- Hero Section -->
-        <section class="text-center py-20 md:py-32">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">HUA-YEN PAN (潘華嚴)</h1>
-            <p class="text-xl md:text-2xl text-slate-600 mb-8">Sound Designer & Audio Engineer</p>
-            <div class="flex justify-center items-center space-x-4">
-                <a href="https://www.linkedin.com/in/hua-yen-pan-03508677" target="_blank" class="text-slate-600 hover:text-[#E57A44] transition-colors">LinkedIn</a>
+    <main class="container mx-auto py-12 px-6">
+        
+        <!-- About Section -->
+        <section id="about" class="mb-20 p-8 bg-gray-800 rounded-xl shadow-lg border border-gray-700">
+            <h2 class="text-4xl font-bold text-center mb-6 text-cyan-400">About Me</h2>
+            <div class="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed space-y-4">
+                <p>
+                    An experienced Sound Designer and Acoustic Engineer with over 5 years of experience in interactive and immersive audio design. I specialize in creating sound systems for hardware, AR/VR, and non-traditional environments. I am skilled in applying Human-Centered Design and systems-thinking to product development, and I leverage tools like Wwise to build compelling and technically robust audio experiences.
+                </p>
             </div>
         </section>
 
-        <!-- Thematic Section 1: Interactive Audio for Products & Hardware -->
-        <section id="hardware" class="py-16 md:py-24 border-t border-slate-200 section-fade-in">
-            <div class="max-w-3xl mx-auto text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Interactive Audio for Products & Hardware</h2>
-                <p class="text-slate-600">This section showcases my experience in designing sound for tangible products and systems where audio is integral to the user experience. My work spans from health-tech hardware to large-scale public infrastructure, focusing on Human-Centered Design, accessibility, and innovative applications of haptic technology.</p>
+        <!-- Projects Section -->
+        <section id="projects" class="mb-20">
+            <h2 class="text-4xl font-bold text-center mb-10 text-cyan-400">Projects Portfolio</h2>
+            
+            <!-- NEW: Featured Project 《ping-pong-ping-pong》 -->
+            <div class="mb-12">
+                <div class="gradient-border p-1">
+                    <div class="bg-gray-800 rounded-xl overflow-hidden p-6 md:p-10">
+                        <div class="flex flex-col lg:flex-row gap-10">
+                            <!-- Left Content -->
+                            <div class="lg:w-1/2">
+                                <span class="inline-block px-3 py-1 bg-cyan-900 text-cyan-300 text-xs font-bold rounded-full mb-4 uppercase tracking-widest">New Work · Nov 2025</span>
+                                <h3 class="text-4xl font-bold mb-4 text-white">《ping-pong-ping-pong》</h3>
+                                <p class="text-xl text-cyan-400 mb-4">2025 Nuit Blanche Taipei 台北白晝之夜</p>
+                                <div class="space-y-4 text-gray-300 text-lg">
+                                    <p>
+                                        This interactive sound installation was featured in the 2025 Nuit Blanche Taipei. It explores the rhythmic relationship between physical movement and generative soundscapes.
+                                    </p>
+                                    <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                                        <li>Role: Sound Designer / Interactive Systems Engineer</li>
+                                        <li>Exhibition: Daan Forest Park, Taipei</li>
+                                    </ul>
+                                </div>
+                                <div class="mt-8 flex flex-wrap gap-4">
+                                    <a href="https://www.nuitblanche.taipei/work/《ping-pong-ping-pong》/" 
+                                       class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center" 
+                                       target="_blank">
+                                        Visit Official Page
+                                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Right Media (Video/Photos) -->
+                            <div class="lg:w-1/2 space-y-6">
+                                <!-- YouTube Embed -->
+                                <div class="aspect-video w-full rounded-lg overflow-hidden shadow-2xl bg-black">
+                                    <!-- Replace YOUR_YOUTUBE_ID with your actual video ID -->
+                                    <iframe 
+                                        class="w-full h-full"
+                                        src="https://www.youtube.com/embed/_BmDJpe8Hak" 
+                                        title="ping-pong-ping-pong Video" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                                
+                                <!-- Photo with Credit -->
+                                <div class="relative group">
+                                    <div class="w-full h-64 bg-gray-700 rounded-lg overflow-hidden">
+                                        <!-- Replace with actual photo URL -->
+                                        <div class="w-full h-full flex items-center justify-center text-gray-500 italic">
+                                            [作品攝影照片上傳預留空間]
+                                        </div>
+                                        <!-- <img src="images/TVM07776_2nd_P3_4k.jpg" alt="ping-pong-ping-pong" class="w-full h-full object-cover"> -->
+                                    </div>
+                                    <div class="mt-2 text-right">
+                                        <span class="text-xs text-gray-500 italic">Photo by: <span class="text-gray-400">攝影團隊：ToV成為影像
+ (Photographer Name)</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- Existing Projects Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <a href="https://www.youtube.com/watch?v=5zp98BRb74k" target="_blank" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-                    <h3 class="font-bold text-xl mb-2">Health-Tech Rhythm Game</h3>
-                    <p class="text-sm text-slate-500 mb-3">Merry Electronic</p>
-                    <p class="text-slate-600 text-sm">Led the development of a patent-pending, music-based rhythm game integrated into a hardware product to combat sarcopenia in the elderly. Primary inventor on the patent.</p>
-                </a>
-                <a href="https://youtu.be/7EMQGUuelRU" target="_blank" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-                    <h3 class="font-bold text-xl mb-2">5G Haptic Wearable Vest</h3>
-                    <p class="text-sm text-slate-500 mb-3">Taiwan Sound Lab, C-LAB</p>
-                    <p class="text-slate-600 text-sm">Led the "Feel Together" project, a wearable vest that translates sound into nuanced haptic vibrations for cultural accessibility. Also designed haptic sensations for a 5G sensory wearable concert and workshops.</p>
-                </a>
-                <a href="https://www.researchgate.net/publication/361482536_Going_home_safely_designing_and_testing_effective_alarms_to_make_passengers_exit_trains" target="_blank" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-                    <h3 class="font-bold text-xl mb-2">Psychoaudio Alarm System</h3>
-                    <p class="text-sm text-slate-500 mb-3">French National Railway (SNCF)</p>
-                    <p class="text-slate-600 text-sm">Spearheaded the design of a system-wide alarm based on psychoaudios, now deployed on vehicles. The research was published and presented at WCRR 2022.</p>
-                </a>
-            </div>
-        </section>
+                
+                <!-- Project Item: Merry Electronic Health Game -->
+                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Merry Electronic Health Game</h3>
+                        <p class="text-sm text-gray-400 mb-4">Acoustic Engineer | 2025</p>
+                        <p class="text-gray-300 mb-4 line-clamp-3">
+                            Led the development of a patent-pending visual recognition-based rhythm game for sarcopenia.
+                        </p>
+                        <div class="mt-4">
+                            <a href="https://youtu.be/5zp98BRb74k" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Learn more →</a>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Thematic Section 2: Immersive & Spatial Audio -->
-        <section id="immersive" class="py-16 md:py-24 border-t border-slate-200 section-fade-in">
-            <div class="max-w-3xl mx-auto text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Immersive & Spatial Audio (AR/VR/Film)</h2>
-                <p class="text-slate-600">My work in immersive media focuses on creating believable and engaging worlds through sound. From award-nominated VR games to experimental 360° films, this is where I apply advanced spatial audio techniques to guide the narrative and deepen immersion.</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                 <a href="https://store.steampowered.com/app/1125600/TAG_WAR" target="_blank" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-                    <h3 class="font-bold text-xl mb-2">VR Game: *Tag War*</h3>
-                    <p class="text-sm text-slate-500 mb-3">2019 INDIE GAME AWARD Nominee</p>
-                    <p class="text-slate-600 text-sm">Designed sound effects and composed music for this critically recognized VR title.</p>
-                </a>
-                <a href="https://www.youtube.com/watch?v=NizX7zrh07s&feature=youtu.be" target="_blank" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-                    <h3 class="font-bold text-xl mb-2">VR Film: *Somewhere Unknown in Indochina*</h3>
-                    <p class="text-sm text-slate-500 mb-3">Binaural Spatial Audio</p>
-                    <p class="text-slate-600 text-sm">Crafted the binaural spatial audio for the key "Umbrella Flying" scene, enhancing its emotional and immersive impact.</p>
-                </a>
-                <a href="https://fulldome-festival.de/files/documents/program/240514-FDF2024_Programm-final.pdf" target="_blank" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-                    <h3 class="font-bold text-xl mb-2">Fulldome Film: *Dialogue in Silence*</h3>
-                    <p class="text-sm text-slate-500 mb-3">2024 FullDome Festival Jena Nominee</p>
-                    <p class="text-slate-600 text-sm">Served as the multi-channel audio creator, mixing with IRCAM Spat and Spat Revolution for a 360-degree dome experience.</p>
-                </a>
-                <a href="https://culturetech.taicca.tw/en/content/145/Monologue%20of%20Barbie" target="_blank" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-                    <h3 class="font-bold text-xl mb-2">VR Film: *Monologue of Barbie*</h3>
-                    <p class="text-sm text-slate-500 mb-3">VR Audio</p>
-                    <p class="text-slate-600 text-sm">Served as a sound designer for this VR film, focusing on immersive storytelling through sound.</p>
-                </a>
-            </div>
-        </section>
+                <!-- Project Item: French National Railway -->
+                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">French Railway (SNCF)</h3>
+                        <p class="text-sm text-gray-400 mb-4">Intern Sound Designer | 2020</p>
+                        <p class="text-gray-300 mb-4 line-clamp-3">
+                            Spearheaded the design of a psychoacoustics-based alarm sound system.
+                        </p>
+                        <div class="mt-4">
+                            <a href="https://www.researchgate.net/publication/361482536_Going_home_safely_designing_and_testing_effective_alarms_to_make_passengers_exit_trains" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Learn more →</a>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Thematic Section 3: Musician & Educator -->
-        <section id="musician" class="py-16 md:py-24 border-t border-slate-200 section-fade-in">
-             <div class="max-w-3xl mx-auto text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Musician & Educator</h2>
-                <p class="text-slate-600">Beyond technology, my foundation is in music. As a professional performer and educator specializing in the Dizi and Xiao (Chinese bamboo flutes), I bring a unique artistic sensibility to my design work. This background has been invaluable for cross-cultural collaboration and for bridging the gap between creative intent and technical execution.</p>
-                <div class="grid md:grid-cols-2 gap-8 mt-8">
-                     <a href="https://podcasts.apple.com/tw/podcast/adda/id1506398629?l=en-GB" target="_blank" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-                        <h3 class="font-bold text-xl mb-2">Podcast Jingle Design: *Adda*</h3>
-                        <p class="text-sm text-slate-500 mb-3">Sound Designer</p>
-                        <p class="text-slate-600 text-sm">Designed the main sound jingle for *Adda - Artist Talk from South Asia*, a podcast focused on art, music, and conversations with artists across South Asia. This highlights experience in audio branding and post-production.</p>
-                    </a>
-                    <a href="https://www.apprentus.com/en/private-lessons/le-mans/music/sound/how-to-play-traditional-chinese-bamboo-flu" target="_blank" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-                        <h3 class="font-bold text-xl mb-2">Dizi/Xiao Teaching Profile</h3>
-                        <p class="text-sm text-slate-500 mb-3">Online Educator</p>
-                        <p class="text-slate-600 text-sm">Demonstrates cross-cultural communication skills by teaching traditional Chinese instruments to students globally.</p>
-                    </a>
+                <!-- Project Item: Taiwan Sound Lab -->
+                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Taiwan Sound Lab, C-LAB</h3>
+                        <p class="text-sm text-gray-400 mb-4">Sound Designer | 2023</p>
+                        <p class="text-gray-300 mb-4 line-clamp-3">
+                            Developed a wearable device that translates sound into tactile vibrations.
+                        </p>
+                        <div class="mt-4">
+                            <a href="https://www.notion.so/2907b0b461a64b859a13287de977d1c8" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Learn more →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Item: VR Film Somewhere Unknown -->
+                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">VR Film Indochina</h3>
+                        <p class="text-sm text-gray-400 mb-4">Sound Designer | 2023</p>
+                        <p class="text-gray-300 mb-4">Binaural Spatial Audio sound design for the "Umbrella Flying" scene.</p>
+                        <div class="mt-4">
+                            <a href="https://youtu.be/NizX7zrh07s" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Watch Video →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Item: Fulldome Film -->
+                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Dialogue in Silence</h3>
+                        <p class="text-sm text-gray-400 mb-4">Multichannel Audio | 2024</p>
+                        <p class="text-gray-300 mb-4">Nominated for the 2024 FullDome Festival Jena.</p>
+                        <div class="mt-4">
+                            <a href="https://fulldome-festival.de" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Item: Spatial Audio -->
+                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">Spatial Recording</h3>
+                        <p class="text-sm text-gray-400 mb-4">Acoustic Engineer</p>
+                        <p class="text-gray-300 mb-4">Spatial audio mixing for improvised percussion performance.</p>
+                        <div class="mt-4">
+                            <a href="https://youtu.be/7lpxW_OdG-A" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Listen →</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="py-16 md:py-24 border-t border-slate-200 section-fade-in">
-            <div class="max-w-4xl mx-auto text-center">
-                 <h2 class="text-3xl md:text-4xl font-bold mb-12">Skills & Tools</h2>
-                 <div class="grid md:grid-cols-3 gap-10">
-                    <div>
-                        <h3 class="font-bold text-xl mb-3">Audio Expertise</h3>
-                        <ul class="space-y-2 text-slate-600">
-                            <li>Interactive Audio & Game Audio</li>
-                            <li>Spatial Audio Mixing</li>
-                            <li>Haptic Technology Design</li>
-                            <li>Psychoaudios</li>
-                            <li>Music Performance & Composition</li>
-                        </ul>
+        <!-- Contact Section -->
+        <section id="contact" class="text-center p-12 bg-gray-800 rounded-xl shadow-lg border border-gray-700">
+            <h2 class="text-4xl font-bold mb-6 text-cyan-400">Get In Touch</h2>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">Interested in collaboration or have a project in mind? Reach out via email or phone.</p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                <a href="mailto:panstudiollrl@gmail.com" class="group flex items-center text-white text-xl hover:text-cyan-400 transition-colors duration-300">
+                    <div class="p-3 bg-gray-700 rounded-full group-hover:bg-cyan-900 mr-4 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2v10z" />
+                        </svg>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-xl mb-3">Systems Thinking</h3>
-                        <ul class="space-y-2 text-slate-600">
-                           <li>Human-Centered Design</li>
-                           <li>Audio Design Systems</li>
-                           <li>Hardware Development Collaboration</li>
-                           <li>Project Management</li>
-                        </ul>
+                    panstudiollrl@gmail.com
+                </a>
+                <div class="flex items-center text-white text-xl">
+                    <div class="p-3 bg-gray-700 rounded-full mr-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-xl mb-3">Software</h3>
-                        <ul class="space-y-2 text-slate-600">
-                            <li>Wwise (Proficient)</li>
-                            <li>Unity</li>
-                            <li>Reaper, Ableton Live, Logic Pro</li>
-                            <li>Audioweaver</li>
-                            <li>Max/MSP</li>
-                        </ul>
-                    </div>
-                 </div>
+                    +886 908 160 834
+                </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-16 md:py-24 text-center border-t border-slate-200 section-fade-in">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Let's Connect</h2>
-            <p class="max-w-2xl mx-auto text-slate-600 mb-8">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious team. Feel free to reach out.</p>
-            <a href="mailto:panstudiollrl@gmail.com" class="text-xl font-semibold text-[#E57A44] hover:underline">panstudiollrl@gmail.com</a>
-        </section>
-    
     </main>
 
-    <footer class="text-center py-8 text-slate-500 text-sm">
-        <p>&copy; 2025 HUA-YEN PAN. Designed to be a dynamic representation of my professional journey.</p>
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 text-gray-500 text-center p-8">
+        <p class="text-sm uppercase tracking-widest">&copy; 2026 HUA-YEN PAN. Portfolio Design.</p>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Script for header shadow on scroll
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 10) {
-                    header.classList.add('shadow-md');
-                } else {
-                    header.classList.remove('shadow-md');
-                }
-            });
-
-            // Script for fade-in sections on scroll
-            const sections = document.querySelectorAll('.section-fade-in');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
 
 </body>
 </html>

@@ -24,11 +24,22 @@
             border-radius: 0.85rem;
             z-index: -1;
         }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200 antialiased">
 
-    <!-- Header -->
     <header class="sticky top-0 z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800 text-white p-6 shadow-lg">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
             <h1 class="text-2xl font-bold tracking-tight text-white">
@@ -46,7 +57,6 @@
 
     <main class="container mx-auto py-12 px-6">
         
-        <!-- About Section -->
         <section id="about" class="mb-20 p-8 bg-gray-800 rounded-xl shadow-lg border border-gray-700">
             <h2 class="text-4xl font-bold text-center mb-6 text-cyan-400">About Me</h2>
             <div class="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed space-y-4">
@@ -56,65 +66,34 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
         <section id="projects" class="mb-20">
             <h2 class="text-4xl font-bold text-center mb-10 text-cyan-400">Projects Portfolio</h2>
             
-            <!-- Featured Project 《ping-pong-ping-pong》 -->
             <div class="mb-12">
                 <div class="gradient-border p-1">
                     <div class="bg-gray-800 rounded-xl overflow-hidden p-6 md:p-10">
                         <div class="flex flex-col lg:flex-row gap-10">
-                            <!-- Left Content -->
                             <div class="lg:w-1/2">
                                 <span class="inline-block px-3 py-1 bg-cyan-900 text-cyan-300 text-xs font-bold rounded-full mb-4 uppercase tracking-widest">New Work · Nov 2025</span>
                                 <h3 class="text-4xl font-bold mb-4 text-white">《ping-pong-ping-pong》</h3>
                                 <p class="text-xl text-cyan-400 mb-4">2025 Nuit Blanche Taipei 台北白晝之夜</p>
                                 <div class="space-y-4 text-gray-300 text-lg">
-                                    <p>
-                                        This interactive sound installation was featured in the 2025 Nuit Blanche Taipei. It explores the rhythmic relationship between physical movement and generative soundscapes.
-                                    </p>
+                                    <p>This interactive sound installation explores the rhythmic relationship between physical movement and generative soundscapes.</p>
                                     <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
                                         <li>Role: Sound Designer / Interactive Systems Engineer</li>
                                         <li>Exhibition: Daan Forest Park, Taipei</li>
                                     </ul>
                                 </div>
                                 <div class="mt-8 flex flex-wrap gap-4">
-                                    <a href="https://www.nuitblanche.taipei/work/《ping-pong-ping-pong》/" 
-                                       class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center" 
-                                       target="_blank">
+                                    <a href="https://www.nuitblanche.taipei/work/《ping-pong-ping-pong》/" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center" target="_blank">
                                         Visit Official Page
                                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                                     </a>
                                 </div>
                             </div>
-
-                            <!-- Right Media (Video/Photos) -->
                             <div class="lg:w-1/2 space-y-6">
-                                <!-- YouTube Embed (Fixed link to embed format) -->
                                 <div class="aspect-video w-full rounded-lg overflow-hidden shadow-2xl bg-black">
-                                    <iframe 
-                                        class="w-full h-full"
-                                        src="https://www.youtube.com/embed/_BmDJpe8Hak" 
-                                        title="ping-pong-ping-pong Video" 
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen>
-                                    </iframe>
-                                </div>
-                                
-                                <!-- Photo with Credit -->
-                                <div class="relative group">
-                                    <div class="w-full h-64 bg-gray-700 rounded-lg overflow-hidden border border-gray-600">
-                                        <!-- 已移除預留空間文字，改為直接顯示影像 -->
-                                        <img src="images/TVM07776_2nd_P3_4k.jpg" 
-                                             alt="ping-pong-ping-pong installation" 
-                                             class="w-full h-full object-cover"
-                                             onerror="this.onerror=null; this.src='https://via.placeholder.com/800x600?text=Image+Not+Found';">
-                                    </div>
-                                    <div class="mt-2 text-right">
-                                        <span class="text-xs text-gray-500 italic">Photo by: <span class="text-gray-400">攝影團隊：ToV成為影像</span></span>
-                                    </div>
+                                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/_BmDJpe8Hak" title="ping-pong-ping-pong Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
@@ -122,90 +101,98 @@
                 </div>
             </div>
 
-            <!-- Existing Projects Grid -->
+            <div class="mb-12">
+                <div class="gradient-border p-1">
+                    <div class="bg-gray-800 rounded-xl overflow-hidden p-6 md:p-10">
+                        <div class="flex flex-col lg:flex-row gap-10">
+                            <div class="lg:w-1/2">
+                                <span class="inline-block px-3 py-1 bg-purple-900 text-purple-300 text-xs font-bold rounded-full mb-4 uppercase tracking-widest">VR Film · 2025</span>
+                                <h3 class="text-4xl font-bold mb-4 text-white">何曉玫 MeimageDance《芭比的獨白》</h3>
+                                <p class="text-xl text-cyan-400 mb-4">VR Cinema Experience</p>
+                                <div class="space-y-4 text-gray-300 text-lg">
+                                    <p>
+                                        在此 VR 電影作品中，我負責整體的聲音設計與空間音訊配置。透過細膩的音效處理，襯托何曉玫老師獨特的舞蹈肢體語言，帶領觀眾進入女性內心的私密獨白空間。
+                                    </p>
+                                    <ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+                                        <li>Role: Sound Designer / Ambisonics Mixing</li>
+                                        <li>Director: 何曉玫 MeimageDance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="lg:w-1/2">
+                                <div class="video-wrapper rounded-lg overflow-hidden shadow-2xl bg-black border border-gray-700">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/G0f9GNF10LQ" 
+                                        title="芭比的獨白 VR 電影聲音設計" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                                <p class="mt-4 text-xs text-gray-500 italic text-center">Click to play and experience the immersive sound design.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project Item: Merry Electronic Health Game -->
                 <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-white">Merry Electronic Health Game</h3>
                         <p class="text-sm text-gray-400 mb-4">Acoustic Engineer | 2025</p>
-                        <p class="text-gray-300 mb-4 line-clamp-3">
-                            Led the development of a patent-pending visual recognition-based rhythm game for sarcopenia.
-                        </p>
-                        <div class="mt-4">
-                            <a href="https://youtu.be/5zp98BRb74k" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Learn more →</a>
-                        </div>
+                        <p class="text-gray-300 mb-4 line-clamp-3">Led the development of a patent-pending visual recognition-based rhythm game for sarcopenia.</p>
+                        <div class="mt-4"><a href="https://youtu.be/5zp98BRb74k" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Learn more →</a></div>
                     </div>
                 </div>
 
-                <!-- Project Item: French National Railway -->
                 <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-white">French Railway (SNCF)</h3>
                         <p class="text-sm text-gray-400 mb-4">Intern Sound Designer | 2020</p>
-                        <p class="text-gray-300 mb-4 line-clamp-3">
-                            Spearheaded the design of a psychoacoustics-based alarm sound system.
-                        </p>
-                        <div class="mt-4">
-                            <a href="https://www.researchgate.net/publication/361482536_Going_home_safely_designing_and_testing_effective_alarms_to_make_passengers_exit_trains" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Learn more →</a>
-                        </div>
+                        <p class="text-gray-300 mb-4 line-clamp-3">Spearheaded the design of a psychoacoustics-based alarm sound system.</p>
+                        <div class="mt-4"><a href="https://www.researchgate.net/publication/361482536_Going_home_safely_designing_and_testing_effective_alarms_to_make_passengers_exit_trains" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Learn more →</a></div>
                     </div>
                 </div>
 
-                <!-- Project Item: Taiwan Sound Lab -->
                 <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-white">Taiwan Sound Lab, C-LAB</h3>
                         <p class="text-sm text-gray-400 mb-4">Sound Designer | 2023</p>
-                        <p class="text-gray-300 mb-4 line-clamp-3">
-                            Developed a wearable device that translates sound into tactile vibrations.
-                        </p>
-                        <div class="mt-4">
-                            <a href="https://www.notion.so/2907b0b461a64b859a13287de977d1c8" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Learn more →</a>
-                        </div>
+                        <p class="text-gray-300 mb-4 line-clamp-3">Developed a wearable device that translates sound into tactile vibrations.</p>
+                        <div class="mt-4"><a href="https://www.notion.so/2907b0b461a64b859a13287de977d1c8" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Learn more →</a></div>
                     </div>
                 </div>
 
-                <!-- Project Item: VR Film Somewhere Unknown -->
                 <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-white">VR Film Indochina</h3>
                         <p class="text-sm text-gray-400 mb-4">Sound Designer | 2023</p>
                         <p class="text-gray-300 mb-4">Binaural Spatial Audio sound design for the "Umbrella Flying" scene.</p>
-                        <div class="mt-4">
-                            <a href="https://youtu.be/NizX7zrh07s" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Watch Video →</a>
-                        </div>
+                        <div class="mt-4"><a href="https://youtu.be/NizX7zrh07s" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Watch Video →</a></div>
                     </div>
                 </div>
 
-                <!-- Project Item: Fulldome Film -->
                 <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-white">Dialogue in Silence</h3>
                         <p class="text-sm text-gray-400 mb-4">Multichannel Audio | 2024</p>
                         <p class="text-gray-300 mb-4">Nominated for the 2024 FullDome Festival Jena.</p>
-                        <div class="mt-4">
-                            <a href="https://fulldome-festival.de" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Details →</a>
-                        </div>
+                        <div class="mt-4"><a href="https://fulldome-festival.de" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Details →</a></div>
                     </div>
                 </div>
 
-                <!-- Project Item: Spatial Audio -->
                 <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold mb-2 text-white">Spatial Recording</h3>
                         <p class="text-sm text-gray-400 mb-4">Acoustic Engineer</p>
                         <p class="text-gray-300 mb-4">Spatial audio mixing for improvised percussion performance.</p>
-                        <div class="mt-4">
-                            <a href="https://youtu.be/7lpxW_OdG-A" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Listen →</a>
-                        </div>
+                        <div class="mt-4"><a href="https://youtu.be/7lpxW_OdG-A" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Listen →</a></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="text-center p-12 bg-gray-800 rounded-xl shadow-lg border border-gray-700">
             <h2 class="text-4xl font-bold mb-6 text-cyan-400">Get In Touch</h2>
             <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">Interested in collaboration or have a project in mind? Reach out via email or phone.</p>
@@ -231,7 +218,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-900 border-t border-gray-800 text-gray-500 text-center p-8">
         <p class="text-sm uppercase tracking-widest">&copy; 2026 HUA-YEN PAN. Portfolio Design.</p>
     </footer>

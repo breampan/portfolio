@@ -45,9 +45,11 @@
         .fc::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:var(--c);z-index:3}
         .fc::after{content:'';position:absolute;top:12px;right:12px;z-index:3;pointer-events:none}
         .fc-spatial::after{width:46px;height:46px;border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 5px,color-mix(in srgb,var(--c) 75%,transparent) 5px 6px);animation:fcPulse 3.2s ease-in-out infinite}
-        .fc-music::after{width:44px;height:26px;background:repeating-linear-gradient(90deg,var(--c) 0 3px,transparent 3px 7px);transform-origin:bottom;animation:fcBars 1.6s ease-in-out infinite}
+        .fc-music::after,.fc-musint::after{width:44px;height:26px;background:repeating-linear-gradient(90deg,var(--c) 0 3px,transparent 3px 7px);transform-origin:bottom;animation:fcBars 1.6s ease-in-out infinite}
         .fc-install::after{width:34px;height:34px;border-radius:50%;border:2px solid var(--c);animation:fcBreathe 4s ease-in-out infinite}
         .fc-ux::after{width:36px;height:36px;background-image:linear-gradient(45deg,var(--c) 25%,transparent 25%,transparent 75%,var(--c) 75%),linear-gradient(45deg,var(--c) 25%,transparent 25%,transparent 75%,var(--c) 75%);background-size:12px 12px;background-position:0 0,6px 6px;opacity:.75}
+        .fc-game::after{width:34px;height:34px;border-radius:50%;border:2px solid var(--c);background:linear-gradient(var(--c),var(--c)) center/2px 100% no-repeat,linear-gradient(var(--c),var(--c)) center/100% 2px no-repeat;animation:fcBreathe 3s ease-in-out infinite}
+        .fc-brand::after{width:44px;height:22px;background:radial-gradient(circle at 50% 0,transparent 8px,var(--c) 8px 10px,transparent 10px) 0 0/22px 22px;opacity:.85}
         @keyframes fcPulse{0%,100%{transform:scale(.9);opacity:.5}50%{transform:scale(1.15);opacity:1}}
         @keyframes fcBars{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
         @keyframes fcBreathe{0%,100%{box-shadow:0 0 4px var(--c);opacity:.6}50%{box-shadow:0 0 18px var(--c);opacity:1}}
@@ -496,7 +498,7 @@
 <script>
 (function(){var g=document.getElementById('projects-grid');if(!g)return;
 var ORDER=['Time-Layered','Deep Sea','French Railway','VR Film','Seasonal Imprints','Solarmix','Duck Hunt','Dong\'s Thing','Da Dong Dong','Merry Electronic'];
-var CATS=[['spatial','#22d3ee','Spatial Audio',/Solarmix|Dialogue|VR Film|Spatial Recording|Soundscape Map/i],['music','#fbbf24','Music',/Andaluza|Dong.s Thing|Bogosort|Da Dong Dong|Shei-Pa/i],['install','#34d399','Installation',/Seasonal|Ping/i]];
+var CATS=[['musint','#e879f9','Music & Interaction',/Da Dong Dong/i],['game','#fb7185','Game Audio',/TAG WAR|Deep Sea|Duck Hunt/i],['brand','#fb923c','Audio Branding',/French Railway|SNCF/i],['spatial','#22d3ee','Spatial Audio',/Solarmix|Dialogue|VR Film|Spatial Recording|Soundscape Map/i],['music','#fbbf24','Music',/Andaluza|Dong.s Thing|Bogosort|Da Dong Dong|Shei-Pa/i],['install','#34d399','Installation',/Seasonal|Ping/i]];
 var DEF=['ux','#a78bfa','Interaction & Haptics'];
 var touch=!window.matchMedia('(hover:hover)').matches;
 var cards=Array.prototype.slice.call(g.children);

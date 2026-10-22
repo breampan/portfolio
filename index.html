@@ -51,6 +51,7 @@
         .fc-game::after{width:34px;height:34px;border-radius:50%;border:2px solid var(--c);background:linear-gradient(var(--c),var(--c)) center/2px 100% no-repeat,linear-gradient(var(--c),var(--c)) center/100% 2px no-repeat;animation:fcBreathe 3s ease-in-out infinite}
         .fc-brand::after{width:44px;height:22px;background:radial-gradient(circle at 50% 0,transparent 8px,var(--c) 8px 10px,transparent 10px) 0 0/22px 22px;opacity:.85}
         .fc-field::after{width:30px;height:30px;border-radius:50% 50% 50% 0;border:2px solid var(--c);transform:rotate(-45deg);animation:fcBreathe 4s ease-in-out infinite}
+        .fc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.fc-tags .fc-chip{margin-bottom:0}
         @keyframes fcPulse{0%,100%{transform:scale(.9);opacity:.5}50%{transform:scale(1.15);opacity:1}}
         @keyframes fcBars{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
         @keyframes fcBreathe{0%,100%{box-shadow:0 0 4px var(--c);opacity:.6}50%{box-shadow:0 0 18px var(--c);opacity:1}}
@@ -499,17 +500,17 @@
 <script>
 (function(){var g=document.getElementById('projects-grid');if(!g)return;
 var ORDER=['Time-Layered','Deep Sea','French Railway','VR Film','Seasonal Imprints','Solarmix','Duck Hunt','Dong\'s Thing','Da Dong Dong','Merry Electronic'];
-var CATS=[['spatial','#22d3ee','Interaction & Spatial Sound Design',/Deep Sea/i],['field','#a3e635','Field Recording',/Soundscape Map/i],['ux','#a78bfa','Interaction & Haptics & Sound Design',/Duck Hunt/i],['musint','#e879f9','Music & Interaction',/Da Dong Dong/i],['game','#fb7185','Game Audio',/TAG WAR|Deep Sea|Duck Hunt/i],['brand','#fb923c','Audio Branding',/French Railway|SNCF/i],['spatial','#22d3ee','Spatial Audio',/Solarmix|Dialogue|VR Film|Spatial Recording|Soundscape Map/i],['music','#fbbf24','Music',/Andaluza|Dong.s Thing|Bogosort|Da Dong Dong|Shei-Pa/i],['install','#34d399','Installation',/Seasonal|Ping/i]];
-var DEF=['ux','#a78bfa','Interaction & Haptics'];
+var TAGC={'Spatial Audio':['spatial','#22d3ee'],'Music':['music','#fbbf24'],'Installation':['install','#34d399'],'Interaction':['ux','#a78bfa'],'Haptics':['ux','#c084fc'],'Sound Design':['game','#fb7185'],'Audio Branding':['brand','#fb923c'],'Field Recording':['field','#a3e635'],'Game Audio':['game','#f472b6']};
+var TAGS=[[/Soundscape Map/i,['Field Recording','Interaction']],[/Deep Sea/i,['Interaction','Spatial Audio','Sound Design']],[/French Railway/i,['Audio Branding','Sound Design']],[/VR Film/i,['Spatial Audio','Sound Design']],[/Seasonal/i,['Installation','Field Recording']],[/Solarmix/i,['Spatial Audio','Interaction']],[/Duck Hunt/i,['Interaction','Haptics','Sound Design']],[/Dong.s Thing/i,['Music']],[/Da Dong Dong/i,['Music','Interaction']],[/Merry Electronic/i,['Interaction','Haptics','Audio Branding']],[/Spatial Recording/i,['Spatial Audio']],[/Bogosort/i,['Music']],[/Dialogue/i,['Spatial Audio','Sound Design']],[/Feel Together/i,['Interaction','Haptics']],[/TAG WAR/i,['Sound Design','Game Audio']],[/Shei-Pa/i,['Music','Sound Design']],[/Andaluza/i,['Music']]];
 var touch=!window.matchMedia('(hover:hover)').matches;
 var cards=Array.prototype.slice.call(g.children);
 cards.forEach(function(c,i){c.__i=i;});
 cards.sort(function(a,b){function k(c){var t=(c.querySelector('h3')||{}).textContent||'';for(var j=0;j<ORDER.length;j++){if(t.indexOf(ORDER[j])>=0)return j;}return 100+c.__i;}return k(a)-k(b);});
 var slots=cards.map(function(c){
-var t=(c.querySelector('h3')||{}).textContent||'';var cat=DEF;CATS.forEach(function(x){if(cat===DEF&&x[3].test(t))cat=x;});
-c.classList.add('fc','fc-'+cat[0]);c.style.setProperty('--c',cat[1]);c.style.setProperty('--cl',[3,2,4,3,2,4][c.__i%6]);
+var t=(c.querySelector('h3')||{}).textContent||'';var tags=null;TAGS.forEach(function(x){if(!tags&&x[0].test(t))tags=x[1];});tags=tags||['Interaction'];var P=TAGC[tags[0]];
+c.classList.add('fc','fc-'+P[0]);c.style.setProperty('--c',P[1]);c.style.setProperty('--cl',[3,2,4,3,2,4][c.__i%6]);
 var p6=c.querySelector('.p-6');
-if(p6){var chip=document.createElement('span');chip.className='fc-chip';chip.innerHTML='<i></i>'+cat[2];p6.insertBefore(chip,p6.firstChild);
+if(p6){var row=document.createElement('div');row.className='fc-tags';tags.forEach(function(g){var chip=document.createElement('span');chip.className='fc-chip';chip.style.setProperty('--c',TAGC[g][1]);chip.innerHTML='<i></i>'+g;row.appendChild(chip);});p6.insertBefore(row,p6.firstChild);
 var desc=p6.querySelector('p.text-gray-300');
 if(desc){desc.classList.add('fc-desc');var after=false;Array.prototype.slice.call(p6.children).forEach(function(e){if(after)e.classList.add('fc-more');if(e===desc)after=true;});
 var hint=document.createElement('p');hint.className='fc-hint';hint.textContent=touch?'Tap to read more \u203A':'Hover to read more \u203A';desc.insertAdjacentElement('afterend',hint);}}

@@ -73,10 +73,10 @@
         .si-slot{position:absolute;overflow:hidden;border-radius:6px;border:2px solid rgba(243,244,246,.88);box-shadow:0 10px 22px -8px rgba(0,0,0,.7);opacity:0;transform:rotate(var(--r,0deg));transition:opacity 1.2s ease;animation:siFloat var(--d,8s) ease-in-out infinite;animation-delay:var(--dl,0s)}
         .si-slot.on{opacity:1}
         .si-slot img{width:100%;height:100%;object-fit:cover;display:block}
-        @keyframes siFloat{0%,100%{translate:0 0}50%{translate:var(--fx,3px) var(--fy,-7px)}}
-        .si-a{left:3%;top:12%;width:36%;height:74%;--r:-3deg;--d:8s;--fy:-8px;z-index:1}
-        .si-b{left:32%;top:5%;width:37%;height:70%;--r:1.5deg;--d:10s;--dl:-3s;--fy:6px;z-index:2}
-        .si-c{left:61%;top:16%;width:36%;height:74%;--r:3deg;--d:9s;--dl:-5s;--fx:-3px;z-index:1}
+        @keyframes siFloat{0%,100%{translate:calc(var(--fx,14px)*-1) 0;rotate:-1.2deg}50%{translate:var(--fx,14px) 3px;rotate:1.2deg}}
+        .si-a{left:4%;top:12%;width:36%;height:74%;--r:-3deg;--d:11s;--fx:16px;z-index:1}
+        .si-b{left:32%;top:6%;width:37%;height:70%;--r:1.5deg;--d:14s;--dl:-5s;--fx:-20px;z-index:2}
+        .si-c{left:60%;top:16%;width:36%;height:74%;--r:3deg;--d:12s;--dl:-8s;--fx:14px;z-index:1}
         .si-modal{position:fixed;inset:0;z-index:100;background:rgba(3,7,18,.94);display:none;flex-direction:column;padding:12px}
         .si-modal.open{display:flex}
         .si-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between}

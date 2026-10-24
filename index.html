@@ -67,6 +67,33 @@
         .fc-slot.exp .fc .fc-more{display:block!important}.fc-slot.exp .fc .fc-more.flex{display:flex!important}
         .fc-slot.exp .fc .fc-desc{display:block;-webkit-line-clamp:unset;overflow:visible}.fc-slot.exp .fc .fc-hint{display:none}
         @media (prefers-reduced-motion:reduce){.fc-slot,.fc::after{animation:none!important}}
+
+        /* My Seasonal Imprints: floating photos + gallery */
+        .si-show{position:relative;height:12rem;overflow:hidden;cursor:pointer;background:radial-gradient(circle at 30% 20%,#1f2937,#111827)}
+        .si-slot{position:absolute;overflow:hidden;border-radius:6px;border:2px solid rgba(243,244,246,.88);box-shadow:0 10px 22px -8px rgba(0,0,0,.7);opacity:0;transform:rotate(var(--r,0deg));transition:opacity 1.2s ease;animation:siFloat var(--d,8s) ease-in-out infinite;animation-delay:var(--dl,0s)}
+        .si-slot.on{opacity:1}
+        .si-slot img{width:100%;height:100%;object-fit:cover;display:block}
+        @keyframes siFloat{0%,100%{translate:0 0}50%{translate:var(--fx,3px) var(--fy,-7px)}}
+        .si-a{left:3%;top:12%;width:36%;height:74%;--r:-3deg;--d:8s;--fy:-8px;z-index:1}
+        .si-b{left:32%;top:5%;width:37%;height:70%;--r:1.5deg;--d:10s;--dl:-3s;--fy:6px;z-index:2}
+        .si-c{left:61%;top:16%;width:36%;height:74%;--r:3deg;--d:9s;--dl:-5s;--fx:-3px;z-index:1}
+        .si-modal{position:fixed;inset:0;z-index:100;background:rgba(3,7,18,.94);display:none;flex-direction:column;padding:12px}
+        .si-modal.open{display:flex}
+        .si-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between}
+        .si-tabs{display:flex;flex-wrap:wrap;gap:6px}
+        .si-tab,.si-btn{font-size:13px;color:#d1d5db;background:#1f2937;border:1px solid #374151;border-radius:999px;padding:4px 12px;cursor:pointer}
+        .si-tab.on,.si-btn.on{color:#06b6d4;border-color:#06b6d4}
+        .si-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:8px;margin:10px 0}
+        .si-fig{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+        .si-fig img{max-width:100%;max-height:calc(100% - 64px);object-fit:contain;border-radius:6px}
+        .si-cap{margin-top:10px;text-align:center;color:#e5e7eb;font-size:15px}
+        .si-cap small{display:block;color:#9ca3af;font-size:13px;margin-top:2px}
+        .si-nav{color:#e5e7eb;background:#1f2937;border:1px solid #374151;border-radius:999px;width:40px;height:40px;font-size:20px;cursor:pointer;flex:none}
+        .si-thumbs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+        .si-thumbs img{height:56px;width:56px;object-fit:cover;border-radius:4px;opacity:.55;cursor:pointer;border:2px solid transparent;flex:none}
+        .si-thumbs img.on{opacity:1;border-color:#06b6d4}
+        @media (max-width:640px){.si-nav{width:32px;height:32px;font-size:16px}}
+        @media (prefers-reduced-motion:reduce){.si-slot{animation:none}}
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200 antialiased">
@@ -317,7 +344,15 @@
                         <div class="mt-4"><a href="https://youtu.be/y8p18UUPo30" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">Watch Video →</a></div>
                     </div>
                 </div>
-                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105"><img src="images/IMG_2954.JPG" alt="我的四季印記 My Seasonal Imprints" class="w-full h-48 object-cover"><div class="p-6"><h3 class="text-2xl font-semibold mb-2 text-white">My Seasonal Imprints <span class="text-gray-400 font-normal">｜我的四季印記</span></h3><p class="text-sm text-gray-400 mb-4">Co-Creator, Sound Design | 2024</p><p class="text-gray-300 mb-4">Public art piece created with artist Syu Hong-Hui and students for the General Education Expo at National Formosa University (Dec 2024). Students cast campus plants in plaster inside reclaimed window frames; I designed the sound layer, transforming students' phone recordings of the campus across seasons and embedding contact speakers behind each plaster panel.</p><div class="mt-4"><a href="https://photos.app.goo.gl/CWKewgMP9ExxN8CcA" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank">More Photos →</a></div></div></div>
+                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
+                    <div id="si-show" class="si-show" role="button" tabindex="0" aria-label="Open the My Seasonal Imprints photo gallery"></div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">My Seasonal Imprints <span class="text-gray-400 font-normal">｜我的四季印記</span></h3>
+                        <p class="text-sm text-gray-400 mb-4">Co-Creator, Sound Design | 2024</p>
+                        <p class="text-gray-300 mb-4">Public art piece made with artist Syu Hong-Hui and about 60 students over two months and four sessions, shown at the General Education Expo at National Formosa University (Dec 2024). Syu taught plaster plant printing and I taught sound design. Students cast campus plants in plaster; I edited their field recordings into sound clips and built a sensor-triggered playback system, with contact speakers behind the plaster panels, set inside a wall of reclaimed window frames. Syu and I collected the old windows from Tainan and Taichung and designed the wooden wall frame together. We also turned old windows into planter boxes to bring a disused sink back to life, with a solar-powered automatic misting system I installed. Thanks to the friends who helped us build it and lent the power tools.</p>
+                        <div class="mt-4 flex gap-5"><button type="button" id="si-open" class="text-cyan-400 hover:underline text-sm font-bold">View Gallery →</button><a href="https://photos.app.goo.gl/CWKewgMP9ExxN8CcA" class="text-cyan-400 hover:underline text-sm font-bold" target="_blank" rel="noopener">Full Album →</a></div>
+                    </div>
+                </div>
                 <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transition-transform duration-300 hover:scale-105">
                     <a href="https://youtu.be/iOc4BLNB5Xo" target="_blank" class="relative block group/video">
                         <img src="https://img.youtube.com/vi/iOc4BLNB5Xo/hqdefault.jpg" alt="Dialogue in Silence video preview" class="w-full h-48 object-cover">
@@ -527,5 +562,102 @@ slots.forEach(function(s){var m=0;for(var i=1;i<n;i++){if(hs[i]<hs[m])m=i;}cols[
 layout();var tm;window.addEventListener('resize',function(){clearTimeout(tm);tm=setTimeout(layout,150);});
 window.addEventListener('load',layout);setTimeout(layout,1500);})();
 </script>
+    <div id="si-modal" class="si-modal" role="dialog" aria-modal="true" aria-label="My Seasonal Imprints photos">
+        <div class="si-bar">
+            <div class="si-tabs" id="si-tabs"></div>
+            <div style="display:flex;gap:6px"><button type="button" class="si-btn" id="si-play">Shuffle play</button><button type="button" class="si-btn" id="si-close" aria-label="Close">✕ Close</button></div>
+        </div>
+        <div class="si-stage"><button type="button" class="si-nav" id="si-prev" aria-label="Previous">‹</button><figure class="si-fig"><img id="si-img" alt=""><figcaption class="si-cap" id="si-cap"></figcaption></figure><button type="button" class="si-nav" id="si-next" aria-label="Next">›</button></div>
+        <div class="si-thumbs" id="si-thumbs"></div>
+    </div>
+
+<script>
+(function(){
+/* To add a photo: put si-NN.jpg (1280px), m-NN.jpg (800px), t-NN.jpg (200px) in images/seasonal/ and add one line below. c = site | workshop | frames | sound | boxes */
+var CATS={site:'Site',workshop:'Workshop & Prints',frames:'Frames & Wall',sound:'Sound',boxes:'Planter Boxes'};
+var SI=[
+{n:"01",c:"site",en:"The corridor entrance, Center for General Education"},
+{n:"02",c:"site",en:"Early mockup of the installation in the corridor"},
+{n:"03",c:"site",en:"The campus"},
+{n:"04",c:"site",en:"Heart-shaped leaves on a path"},
+{n:"05",c:"workshop",en:"Workshop session with students"},
+{n:"06",c:"workshop",en:"Students at the workshop tables"},
+{n:"07",c:"workshop",en:"Plant material and clay ready for printing"},
+{n:"08",c:"workshop",en:"A rice stalk laid on clay for a print"},
+{n:"09",c:"workshop",en:"A plant impression in clay"},
+{n:"10",c:"workshop",en:"Shaping a clay leaf print"},
+{n:"11",c:"workshop",en:"A plant print drying on paper"},
+{n:"12",c:"workshop",en:"A plaster cast with plant impressions"},
+{n:"13",c:"workshop",en:"Fitting plaster prints into an old window frame"},
+{n:"14",c:"frames",en:"Painting wooden parts white"},
+{n:"15",c:"frames",en:"Painting frame parts"},
+{n:"16",c:"frames",en:"Painting a wooden frame white"},
+{n:"17",c:"frames",en:"A two-tier wooden frame, assembled"},
+{n:"18",c:"frames",en:"Checking a frame assembly together"},
+{n:"19",c:"frames",en:"Clamping a frame"},
+{n:"20",c:"frames",en:"Fastening a frame with a nail gun"},
+{n:"21",c:"frames",en:"Cutting lumber for the wall structure"},
+{n:"22",c:"frames",en:"Installing the timber grid on the wall"},
+{n:"23",c:"frames",en:"Laying out the frames before hanging"},
+{n:"24",c:"frames",en:"The first frames on the wall"},
+{n:"25",c:"frames",en:"Hanging frames on the wall"},
+{n:"26",c:"frames",en:"Adjusting frames on the wall"},
+{n:"27",c:"frames",en:"Hanging frames on site"},
+{n:"28",c:"frames",en:"Loading the vines onto a car roof"},
+{n:"29",c:"frames",en:"Vines collected for the installation"},
+{n:"30",c:"frames",en:"A plaster print and a small planted jar in a frame"},
+{n:"31",c:"site",en:"A moment during installation"},
+{n:"32",c:"frames",en:"The finished wall"},
+{n:"33",c:"sound",en:"Twisted-pair cables running along the wall frame"},
+{n:"34",c:"sound",en:"A motion (PIR) sensor wired up, tested beside a plaster panel"},
+{n:"35",c:"sound",en:"A speaker mounted on the wall between frames"},
+{n:"36",c:"boxes",en:"The disused sink before planting"},
+{n:"37",c:"boxes",en:"Planting materials: cuttings, wire and twine"},
+{n:"38",c:"boxes",en:"A planter box made from an old window, in progress"},
+{n:"39",c:"boxes",en:"Attaching an old window as the lid of a planter box"},
+{n:"40",c:"boxes",en:"Two planter boxes with old window lids"},
+{n:"41",c:"boxes",en:"Two planter boxes with ferns and vines"},
+{n:"42",c:"boxes",en:"A planter box with a fern and vines"},
+{n:"43",c:"boxes",en:"Ivy planted on a moss ball"},
+{n:"44",c:"boxes",en:"Moss ball and ivy against patterned glass"},
+{n:"45",c:"boxes",en:"A small planted glass box"},
+{n:"46",c:"boxes",en:"A small planted glass box hanging among the plants"},
+{n:"47",c:"boxes",en:"The planter boxes on the disused sink"}
+];
+function src(p,k){return 'images/seasonal/'+p+'-'+k.n+'.jpg';}
+function pick(arr,not){var a=arr.filter(function(x){return not.indexOf(x)<0;});return a[Math.floor(Math.random()*a.length)];}
+
+/* floating photos in the card: at most 3 at a time, one swaps every few seconds */
+var show=document.getElementById('si-show');
+if(show){
+var slots=['si-a','si-b','si-c'].map(function(cl){var s=document.createElement('div');s.className='si-slot '+cl;var im=document.createElement('img');im.alt='';im.decoding='async';s.appendChild(im);show.appendChild(s);s.cur=null;return s;});
+function setSlot(s){var shown=slots.map(function(x){return x.cur;});var k=pick(SI,shown);if(!k)return;var im=s.firstChild;var pre=new Image();pre.onload=function(){s.classList.remove('on');setTimeout(function(){im.src=pre.src;s.cur=k;s.classList.add('on');},s.cur?900:0);};pre.src=src('m',k);}
+var last=-1;
+slots.forEach(function(s,i){setTimeout(function(){setSlot(s);},i*500);});
+setInterval(function(){if(document.hidden)return;var i;do{i=Math.floor(Math.random()*3);}while(i===last);last=i;setSlot(slots[i]);},3800);
+}
+
+/* gallery */
+var modal=document.getElementById('si-modal');if(!modal)return;
+var tabsEl=document.getElementById('si-tabs'),thumbsEl=document.getElementById('si-thumbs'),img=document.getElementById('si-img'),cap=document.getElementById('si-cap'),playBtn=document.getElementById('si-play');
+var cat='all',list=SI.slice(),idx=0,timer=null,lastFocus=null;
+function renderTabs(){tabsEl.innerHTML='';[['all','All']].concat(Object.keys(CATS).map(function(k){return [k,CATS[k]];})).forEach(function(t){var b=document.createElement('button');b.type='button';b.className='si-tab'+(t[0]===cat?' on':'');b.textContent=t[1];b.onclick=function(){cat=t[0];list=cat==='all'?SI.slice():SI.filter(function(x){return x.c===cat;});idx=0;renderTabs();renderThumbs();go(0);};tabsEl.appendChild(b);});}
+function renderThumbs(){thumbsEl.innerHTML='';list.forEach(function(k,i){var t=document.createElement('img');t.loading='lazy';t.src=src('t',k);t.alt=k.en;t.onclick=function(){go(i);};thumbsEl.appendChild(t);});}
+function go(i){idx=(i+list.length)%list.length;var k=list[idx];img.src=src('si',k);img.alt=k.en;cap.innerHTML='';cap.appendChild(document.createTextNode(k.en));var sm=document.createElement('small');sm.textContent=(idx+1)+' / '+list.length;cap.appendChild(sm);Array.prototype.forEach.call(thumbsEl.children,function(t,j){t.classList.toggle('on',j===idx);if(j===idx&&t.scrollIntoView)t.scrollIntoView({block:'nearest',inline:'center'});});}
+function stop(){clearInterval(timer);timer=null;playBtn.classList.remove('on');playBtn.textContent='Shuffle play';}
+function open(i){lastFocus=document.activeElement;modal.classList.add('open');document.body.style.overflow='hidden';cat='all';list=SI.slice();renderTabs();renderThumbs();go(typeof i==='number'?i:0);document.getElementById('si-close').focus();}
+function close(){modal.classList.remove('open');document.body.style.overflow='';stop();if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+document.getElementById('si-close').onclick=close;
+document.getElementById('si-prev').onclick=function(){stop();go(idx-1);};
+document.getElementById('si-next').onclick=function(){stop();go(idx+1);};
+playBtn.onclick=function(){if(timer){stop();return;}playBtn.classList.add('on');playBtn.textContent='Pause';timer=setInterval(function(){go(Math.floor(Math.random()*list.length));},3500);};
+modal.addEventListener('click',function(e){if(e.target===modal)close();});
+document.addEventListener('keydown',function(e){if(!modal.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft'){stop();go(idx-1);}else if(e.key==='ArrowRight'){stop();go(idx+1);}});
+var sx=null;img.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});img.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>40){stop();go(idx+(dx<0?1:-1));}});
+if(show){show.addEventListener('click',function(){open(0);});show.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(0);}});}
+var ob=document.getElementById('si-open');if(ob)ob.addEventListener('click',function(e){e.preventDefault();open(0);});
+})();
+</script>
+
 </body>
 </html>

@@ -69,14 +69,9 @@
         @media (prefers-reduced-motion:reduce){.fc-slot,.fc::after{animation:none!important}}
 
         /* My Seasonal Imprints: floating photos + gallery */
-        .si-show{position:relative;height:12rem;overflow:hidden;cursor:pointer;background:radial-gradient(circle at 30% 20%,#1f2937,#111827)}
-        .si-slot{position:absolute;overflow:hidden;border-radius:6px;border:2px solid rgba(243,244,246,.88);box-shadow:0 10px 22px -8px rgba(0,0,0,.7);opacity:0;transform:rotate(var(--r,0deg));transition:opacity 1.2s ease;animation:siFloat var(--d,8s) ease-in-out infinite;animation-delay:var(--dl,0s)}
-        .si-slot.on{opacity:1}
-        .si-slot img{width:100%;height:100%;object-fit:cover;display:block}
-        @keyframes siFloat{0%,100%{translate:calc(var(--fx,14px)*-1) 0;rotate:-1.2deg}50%{translate:var(--fx,14px) 3px;rotate:1.2deg}}
-        .si-a{left:4%;top:12%;width:36%;height:74%;--r:-3deg;--d:11s;--fx:16px;z-index:1}
-        .si-b{left:32%;top:6%;width:37%;height:70%;--r:1.5deg;--d:14s;--dl:-5s;--fx:-20px;z-index:2}
-        .si-c{left:60%;top:16%;width:36%;height:74%;--r:3deg;--d:12s;--dl:-8s;--fx:14px;z-index:1}
+        .si-show{position:relative;height:12rem;overflow:hidden;cursor:pointer;background:radial-gradient(circle at 30% 20%,#1f2937,#111827);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
+        .si-item{position:absolute;left:0;top:0;overflow:hidden;border-radius:6px;border:2px solid rgba(243,244,246,.88);box-shadow:0 10px 22px -8px rgba(0,0,0,.7);will-change:transform}
+        .si-item img{width:100%;height:100%;object-fit:cover;display:block}
         .si-modal{position:fixed;inset:0;z-index:100;background:rgba(3,7,18,.94);display:none;flex-direction:column;padding:12px}
         .si-modal.open{display:flex}
         .si-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between}
@@ -93,7 +88,6 @@
         .si-thumbs img{height:56px;width:56px;object-fit:cover;border-radius:4px;opacity:.55;cursor:pointer;border:2px solid transparent;flex:none}
         .si-thumbs img.on{opacity:1;border-color:#06b6d4}
         @media (max-width:640px){.si-nav{width:32px;height:32px;font-size:16px}}
-        @media (prefers-reduced-motion:reduce){.si-slot{animation:none}}
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200 antialiased">
@@ -627,14 +621,29 @@ var SI=[
 function src(p,k){return 'images/seasonal/'+p+'-'+k.n+'.jpg';}
 function pick(arr,not){var a=arr.filter(function(x){return not.indexOf(x)<0;});return a[Math.floor(Math.random()*a.length)];}
 
-/* floating photos in the card: at most 3 at a time, one swaps every few seconds */
+/* floating photos in the card: a slow river of photos. New ones drift in from the right and push the old ones out to the left; at most about three are in view. */
 var show=document.getElementById('si-show');
 if(show){
-var slots=['si-a','si-b','si-c'].map(function(cl){var s=document.createElement('div');s.className='si-slot '+cl;var im=document.createElement('img');im.alt='';im.decoding='async';s.appendChild(im);show.appendChild(s);s.cur=null;return s;});
-function setSlot(s){var shown=slots.map(function(x){return x.cur;});var k=pick(SI,shown);if(!k)return;var im=s.firstChild;var pre=new Image();pre.onload=function(){s.classList.remove('on');setTimeout(function(){im.src=pre.src;s.cur=k;s.classList.add('on');},s.cur?900:0);};pre.src=src('m',k);}
-var last=-1;
-slots.forEach(function(s,i){setTimeout(function(){setSlot(s);},i*500);});
-setInterval(function(){if(document.hidden)return;var i;do{i=Math.floor(Math.random()*3);}while(i===last);last=i;setSlot(slots[i]);},3800);
+var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+var bag=[],lastIdx=-1,items=[],spawned=0,t=0,prev=null,vis=true,sizeKey='';
+function nextIdx(){if(!bag.length){bag=SI.map(function(_,i){return i;});for(var i=bag.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=bag[i];bag[i]=bag[j];bag[j]=x;}if(bag.length>1&&bag[bag.length-1]===lastIdx)bag.unshift(bag.pop());}lastIdx=bag.pop();return lastIdx;}
+function spawn(x){var k=SI[nextIdx()],el=document.createElement('div'),im=document.createElement('img');el.className='si-item';im.alt='';im.decoding='async';im.src=src('m',k);el.appendChild(im);show.appendChild(el);items.push({el:el,x:x,ph:Math.random()*6.28,r:Math.random()*4-2,lane:spawned++%2});sizeKey='';}
+function frame(ts){requestAnimationFrame(frame);if(document.hidden||!vis){prev=null;return;}
+var W=show.clientWidth,H=show.clientHeight;if(!W)return;
+var dt=prev===null?0:Math.min((ts-prev)/1000,.1);prev=ts;t+=dt;
+var w=W*.42,step=W*.46,speed=rm?0:step/9;
+if(!items.length){var x0=W*.04;while(x0<=W){spawn(x0);x0+=step;}}
+items.forEach(function(it){it.x-=speed*dt;});
+while(items.length&&items[0].x+w<-20){show.removeChild(items[0].el);items.shift();}
+while(items[items.length-1].x<=W)spawn(items[items.length-1].x+step);
+var key=W+'x'+H;
+items.forEach(function(it){
+if(key!==sizeKey){it.el.style.width=w+'px';it.el.style.height=(H*.72)+'px';it.el.style.top=(it.lane?H*.2:H*.07)+'px';}
+var sx=rm?0:Math.sin(t*.55+it.ph)*9,sy=rm?0:Math.sin(t*.8+it.ph*1.3)*4,sr=rm?0:Math.sin(t*.6+it.ph)*1.6;
+it.el.style.transform='translate3d('+(it.x+sx).toFixed(1)+'px,'+sy.toFixed(1)+'px,0) rotate('+(it.r+sr).toFixed(2)+'deg)';});
+sizeKey=key;}
+if('IntersectionObserver' in window){new IntersectionObserver(function(e){vis=e[0].isIntersecting;}).observe(show);}
+requestAnimationFrame(frame);
 }
 
 /* gallery */

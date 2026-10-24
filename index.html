@@ -69,9 +69,9 @@
         @media (prefers-reduced-motion:reduce){.fc-slot,.fc::after{animation:none!important}}
 
         /* My Seasonal Imprints: floating photos + gallery */
-        .si-show{position:relative;height:12rem;overflow:hidden;cursor:pointer;background:radial-gradient(circle at 30% 20%,#1f2937,#111827);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
+        .si-show{position:relative;height:12rem;overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;background:radial-gradient(circle at 30% 20%,#1f2937,#111827);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
         .si-item{position:absolute;left:0;top:0;overflow:hidden;border-radius:6px;border:2px solid rgba(243,244,246,.88);box-shadow:0 10px 22px -8px rgba(0,0,0,.7);will-change:transform}
-        .si-item img{width:100%;height:100%;object-fit:cover;display:block}
+        .si-item img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
         .si-modal{position:fixed;inset:0;z-index:100;background:rgba(3,7,18,.94);display:none;flex-direction:column;padding:12px}
         .si-modal.open{display:flex}
         .si-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between}
@@ -620,27 +620,37 @@ var SI=[
 function src(p,k){return 'images/seasonal/'+p+'-'+k.n+'.jpg';}
 function pick(arr,not){var a=arr.filter(function(x){return not.indexOf(x)<0;});return a[Math.floor(Math.random()*a.length)];}
 
-/* floating photos in the card: a slow river of photos. New ones drift in from the right and push the old ones out to the left; at most about three are in view. */
+/* floating photos in the card: a slow river of photos. New ones drift in from the right and push the old ones out to the left; at most about three are in view. Drag or swipe to move it by hand; it keeps flowing when you let go. */
 var show=document.getElementById('si-show');
 if(show){
 var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
-var bag=[],lastIdx=-1,items=[],spawned=0,t=0,prev=null,vis=true,sizeKey='';
+var bag=[],lastIdx=-1,items=[],t=0,prev=null,vis=true,sizeKey='',drag=null,dragged=false,vx=0,flow=1;
 function nextIdx(){if(!bag.length){bag=SI.map(function(_,i){return i;});for(var i=bag.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=bag[i];bag[i]=bag[j];bag[j]=x;}if(bag.length>1&&bag[bag.length-1]===lastIdx)bag.unshift(bag.pop());}lastIdx=bag.pop();return lastIdx;}
-function spawn(x){var k=SI[nextIdx()],el=document.createElement('div'),im=document.createElement('img');el.className='si-item';im.alt='';im.decoding='async';im.src=src('m',k);el.appendChild(im);show.appendChild(el);items.push({el:el,x:x,ph:Math.random()*6.28,r:Math.random()*4-2,lane:spawned++%2});sizeKey='';}
+function spawn(x,front){var n=nextIdx(),k=SI[n],el=document.createElement('div'),im=document.createElement('img'),ref=front?items[0]:items[items.length-1];el.className='si-item';el.setAttribute('data-i',n);im.alt='';im.decoding='async';im.src=src('m',k);el.appendChild(im);show.appendChild(el);var it={el:el,x:x,ph:Math.random()*6.28,r:Math.random()*4-2,lane:ref?1-ref.lane:0};if(front)items.unshift(it);else items.push(it);sizeKey='';}
 function frame(ts){requestAnimationFrame(frame);if(document.hidden||!vis){prev=null;return;}
 var W=show.clientWidth,H=show.clientHeight;if(!W)return;
 var dt=prev===null?0:Math.min((ts-prev)/1000,.1);prev=ts;t+=dt;
 var w=W*.42,step=W*.46,speed=rm?0:step/9;
 if(!items.length){var x0=W*.04;while(x0<=W){spawn(x0);x0+=step;}}
-items.forEach(function(it){it.x-=speed*dt;});
-while(items.length&&items[0].x+w<-20){show.removeChild(items[0].el);items.shift();}
-while(items[items.length-1].x<=W)spawn(items[items.length-1].x+step);
+if(drag){vx*=Math.exp(-12*dt);flow=0;}else{vx*=Math.exp(-3*dt);flow=Math.min(1,flow+dt/1.5);}
+var mv=(drag?0:vx*dt)-speed*flow*dt;
+if(mv)items.forEach(function(it){it.x+=mv;});
+while(items.length>1&&items[0].x<-(w+step)){show.removeChild(items[0].el);items.shift();}
+while(items.length>1&&items[items.length-1].x>W+step+w){show.removeChild(items[items.length-1].el);items.pop();}
+while(items[0].x>-w*.5)spawn(items[0].x-step,true);
+while(items[items.length-1].x<=W)spawn(items[items.length-1].x+step,false);
 var key=W+'x'+H;
 items.forEach(function(it){
 if(key!==sizeKey){it.el.style.width=w+'px';it.el.style.height=(H*.72)+'px';it.el.style.top=(it.lane?H*.2:H*.07)+'px';}
 var sx=rm?0:Math.sin(t*.55+it.ph)*9,sy=rm?0:Math.sin(t*.8+it.ph*1.3)*4,sr=rm?0:Math.sin(t*.6+it.ph)*1.6;
 it.el.style.transform='translate3d('+(it.x+sx).toFixed(1)+'px,'+sy.toFixed(1)+'px,0) rotate('+(it.r+sr).toFixed(2)+'deg)';});
 sizeKey=key;}
+show.addEventListener('pointerdown',function(e){if(e.pointerType==='mouse'&&e.button!==0)return;drag={id:e.pointerId,x:e.clientX,t:performance.now(),total:0};dragged=false;vx=0;});
+show.addEventListener('pointermove',function(e){if(!drag||e.pointerId!==drag.id)return;var dx=e.clientX-drag.x;if(!dx)return;var now=performance.now(),dtm=Math.max(1,now-drag.t);drag.total+=Math.abs(dx);
+if(!dragged&&drag.total>6){dragged=true;show.style.cursor='grabbing';try{show.setPointerCapture(e.pointerId);}catch(_){}}
+if(dragged){items.forEach(function(it){it.x+=dx;});vx=vx*.6+(dx/dtm*1000)*.4;}drag.x=e.clientX;drag.t=now;});
+function endDrag(e){if(!drag||e.pointerId!==drag.id)return;drag=null;show.style.cursor='';}
+show.addEventListener('pointerup',endDrag);show.addEventListener('pointercancel',endDrag);
 if('IntersectionObserver' in window){new IntersectionObserver(function(e){vis=e[0].isIntersecting;}).observe(show);}
 requestAnimationFrame(frame);
 }
@@ -662,7 +672,7 @@ playBtn.onclick=function(){if(timer){stop();return;}playBtn.classList.add('on');
 modal.addEventListener('click',function(e){if(e.target===modal)close();});
 document.addEventListener('keydown',function(e){if(!modal.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft'){stop();go(idx-1);}else if(e.key==='ArrowRight'){stop();go(idx+1);}});
 var sx=null;img.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});img.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>40){stop();go(idx+(dx<0?1:-1));}});
-if(show){show.addEventListener('click',function(){open(0);});show.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(0);}});}
+if(show){show.addEventListener('click',function(e){if(dragged){dragged=false;return;}var it=e.target.closest&&e.target.closest('.si-item');open(it?+it.getAttribute('data-i'):0);});show.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(0);}});}
 var ob=document.getElementById('si-open');if(ob)ob.addEventListener('click',function(e){e.preventDefault();open(0);});
 })();
 </script>
